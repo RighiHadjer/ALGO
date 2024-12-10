@@ -1,12 +1,13 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+
 char *ChargerChaine(int N) {
     char *chaine = (char *)malloc(N + 1); 
     if (chaine == NULL) {
         printf("خطأ في تخصيص الذاكرة\n");
         exit(1);
-                        }
+    }
+
     int i = 0;
     char c;
     while ((c = getchar()) != '\n' && i < N) {
@@ -14,38 +15,59 @@ char *ChargerChaine(int N) {
     }
     chaine[i] = '\0'; 
     return chaine;
-                           } 
-int Longueur(char *ch) {
-return strlen(ch);
 }
-void ChargerTab(char *p, char Tab[]) {
-strcpy(Tab, p);
+
+int longueur(char *chaine) {
+    int i = 0;
+    while (chaine[i] != '\0') {
+        i++;
+    }
+    return i;
 }
-void InverserTab(char Tab[], char T[], int m) {
-for (int i = 0; i < m; i++) {
-     T[i] = Tab[m-i-1];
+
+void copier(char *source, char *destination) {
+    int i = 0;
+    while (source[i] != '\0') {
+        destination[i] = source[i];
+        i++;
+    }
+    destination[i] = '\0';
 }
+
+void inverser(char *chaine) {
+    int i = 0, j = longueur(chaine) - 1;
+    char temp;
+    while (i < j) {
+        temp = chaine[i];
+        chaine[i] = chaine[j];
+        chaine[j] = temp;
+        i++;
+        j--;
+    }
 }
-void AfficherTab(char Tab[], int m) {
-for (int i = 0; i < m; i++) {
-     printf("%c", Tab[i]);
-}
-printf("\n");
+
+void afficher(char *chaine) {
+    printf("%s\n", chaine);
 }
 
 int main() {
-int n;
-printf("Veuillez saisir la taille maximale de la chaine:\n");
-scanf("%d", &n);
-char *ch = ChargerChaine(n);
-int m = Longueur(ch);
-char Tab[m], T[m];
-ChargerTab(ch, Tab);
-printf("La chaine originale: \n");
-AfficherTab(Tab, m);
-InverserTab(Tab, T, m);
-printf("La chaine inversée:\n");
-AfficherTab(T, m);
-free(ch);
-return 0;
+    int n;
+    printf("donnélongueur: ");
+    scanf("%d", &n);
+
+    char *chaine = ChargerChaine(n);
+
+    int longueurChaine = longueur(chaine);
+    printf("longueurchaine: %d\n", longueurChaine);
+
+    char chaineCopie[longueurChaine + 1];
+    copier(chaine, chaineCopie);
+    printf("chainecopie: %s\n", chaineCopie);
+
+    inverser(chaine);
+    printf("chaineinversée: %s\n", chaine);
+
+    free(chaine);
+
+    return 0;
 }

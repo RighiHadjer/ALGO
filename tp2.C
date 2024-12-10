@@ -2,12 +2,19 @@
 #include <string.h>
 #include <stdlib.h>
 char *ChargerChaine(int N) {
-char *chaine = (char*)malloc(N+1);
-printf("Veuillez saisir la chaine:\n");
-fgets(chaine, N, stdin);
-chaine[strcspn(chaine, "\n")] = '\0';
-return chaine;
-}
+    char *chaine = (char *)malloc(N + 1); 
+    if (chaine == NULL) {
+        printf("خطأ في تخصيص الذاكرة\n");
+        exit(1);
+                        }
+    int i = 0;
+    char c;
+    while ((c = getchar()) != '\n' && i < N) {
+        chaine[i++] = c;
+    }
+    chaine[i] = '\0'; 
+    return chaine;
+                           } 
 int Longueur(char *ch) {
 return strlen(ch);
 }

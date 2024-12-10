@@ -1,7 +1,7 @@
 #include <stdio.h >
 int main () {
-int matrix [5][5]
-
+int matrix [5][5];
+int i,j,n;
 for(int i=0;i<5;i++)
 {
    for(int j =0;j<5;j++)
@@ -41,7 +41,7 @@ for(i=0;i<5;i++)
    for(j=0;j<5;j++)
      if(i+j=n_1)
      {
-         printf ("%c /t"; matrix [i][j]);
+        printf ("%c /t"; matrix [i][j]);
     printf ("/n");
      }
 return 0;
